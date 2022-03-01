@@ -1,7 +1,10 @@
 package com.example.mosabeghe1
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import com.example.mosabeghe1.databinding.ActivityMainBinding
 import kotlin.random.Random
 
@@ -12,9 +15,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-       Game.dice()
 
 
+
+        binding.button.setOnClickListener{
+            Game.dice()
+            initViews()
+        }
+        binding.textViewChoice1.setOnClickListener{
+            checkAnswer(it)
+        }
+        binding.textViewChoice2.setOnClickListener{
+            checkAnswer(it)
+        }
+        binding.textViewChoice3.setOnClickListener{
+            checkAnswer(it)
+        }
+        binding.textViewChoice4.setOnClickListener{
+            checkAnswer(it)
+        }
     }
 
     fun setRandomNumbers(a: Int, b: Int) {
@@ -27,6 +46,22 @@ class MainActivity : AppCompatActivity() {
         binding.textViewChoice2.text = Game.generateWrongChoices()[0].toString()
         binding.textViewChoice3.text = Game.generateWrongChoices()[1].toString()
         binding.textViewChoice4.text = Game.generateWrongChoices()[2].toString()
+        binding.tvScore.text = Game.score.toString()
     }
 
+    fun checkAnswer(view: View){
+        if (Game.level <= 4){
+            if ((view as TextView).text == Game.generateCorrectChoice().toString()){
+                Game.nextLevel(true)
+            } else {
+                Game.nextLevel(false)
+            }
+            binding.tvScore.text = Game.score.toString()
+        } else{
+            val intent = Intent(this, Activity2::class.java)
+            intent.putExtra("score", Game.score)
+            startActivity(intent)
+        }
+
+    }
 }
