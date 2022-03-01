@@ -4,16 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E0F7FA"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/button"
         style="@style/StyleButton1"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
         android:layout_marginBottom="84dp"
         android:text="تاس"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -69,13 +66,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewValueOfA" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toTopOf="@+id/textViewChoice1"
-        app:layout_constraintTop_toBottomOf="@+id/textViewValueOfB" />
-
     <TextView
         android:id="@+id/textViewChoice1"
         style="@style/StyleTextBox1"
@@ -104,10 +94,9 @@
         android:id="@+id/tv_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="24dp"
         android:text="TextView"
-        android:textColor="#FF2E2E"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -116,39 +105,27 @@
         style="@style/StyleTextBox1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:text="A :"
-        android:textSize="28sp"
+        android:layout_marginStart="120dp"
+        android:text="A:"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewValueOfA"
+        app:layout_constraintEnd_toStartOf="@+id/textViewValueOfA"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewValueOfA"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="@+id/textViewValueOfA" />
 
     <TextView
         android:id="@+id/textView3"
         style="@style/StyleTextBox1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:text="B :"
-        android:textSize="28sp"
-
+        android:layout_marginStart="104dp"
+        android:text="B:"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewValueOfB"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewValueOfB"
-        app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="score: "
-        android:textColor="#FF2E2E"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_score"
-        app:layout_constraintEnd_toStartOf="@+id/tv_score"
-        app:layout_constraintTop_toTopOf="@+id/tv_score"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toStartOf="@+id/textViewValueOfB"
+        app:layout_constraintHorizontal_bias="0.615"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewValueOfB" />
 </androidx.constraintlayout.widget.ConstraintLayout>
