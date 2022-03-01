@@ -19,6 +19,7 @@
 
     <Button
         android:id="@+id/btn_new_game"
+        style="@style/StyleButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
@@ -29,6 +30,7 @@
 
     <Button
         android:id="@+id/btn_exit"
+        style="@style/StyleButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
