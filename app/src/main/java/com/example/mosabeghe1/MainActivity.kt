@@ -1,5 +1,6 @@
 package com.example.mosabeghe1
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -49,11 +50,14 @@ class MainActivity : AppCompatActivity() {
         binding.tvScore.text = Game.score.toString()
     }
 
+
     fun checkAnswer(view: View){
         if ((view as TextView).text == Game.generateCorrectChoice().toString()){
             Game.nextLevel(true)
+
         } else {
             Game.nextLevel(false)
+
         }
         binding.tvScore.text = Game.score.toString()
         if (Game.level > 5){

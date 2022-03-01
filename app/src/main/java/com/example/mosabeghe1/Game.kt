@@ -8,7 +8,7 @@ object Game {
 
     fun dice() {
         a = (0..100).random()
-        b = (0..10).random()
+        b = (1..10).random()
     }
 
     fun generateCorrectChoice(): Int {
