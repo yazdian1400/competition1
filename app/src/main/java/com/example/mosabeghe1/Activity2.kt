@@ -15,7 +15,7 @@ class Activity2 : AppCompatActivity() {
         binding = Activity2Binding.inflate(layoutInflater)
         setContentView(binding.root)
         val score = intent.getIntExtra("score",0)
-        binding.tvShowScore.text = "your score: ${score.toString()}"
+        binding.tvShowScore.text = " ${score.toString()}"
         binding.btnExit.setOnClickListener{
             this.finishAffinity()
         }

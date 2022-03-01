@@ -54,10 +54,11 @@
         android:layout_height="wrap_content"
         android:text="امتیاز شما : "
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_showScore"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_showScore"
-        tools:layout_editor_absoluteY="225dp" />
+        app:layout_constraintTop_toTopOf="@+id/tv_showScore" />
 
     <TextView
         android:id="@+id/textView5"
