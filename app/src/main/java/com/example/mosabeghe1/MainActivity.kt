@@ -50,18 +50,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun checkAnswer(view: View){
-        if (Game.level <= 4){
-            if ((view as TextView).text == Game.generateCorrectChoice().toString()){
-                Game.nextLevel(true)
-            } else {
-                Game.nextLevel(false)
-            }
-            binding.tvScore.text = Game.score.toString()
-        } else{
+        if ((view as TextView).text == Game.generateCorrectChoice().toString()){
+            Game.nextLevel(true)
+        } else {
+            Game.nextLevel(false)
+        }
+        binding.tvScore.text = Game.score.toString()
+        if (Game.level > 5){
             val intent = Intent(this, Activity2::class.java)
             intent.putExtra("score", Game.score)
             startActivity(intent)
         }
-
     }
 }
