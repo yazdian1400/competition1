@@ -10,11 +10,11 @@ object Game {
         b = (0..10).random()
     }
 
-    fun generateCorrectChoice(a: Int, b: Int): Int {
+    fun generateCorrectChoice(): Int {
         return a % b
     }
 
-    fun generateWrongChoices(b: Int, correctChoice: Int): MutableList<Int> {
+    fun generateWrongChoices(): MutableList<Int> {
         val choices = mutableListOf(0, 0, 0)
         choices[0] = (0..b).random()
         choices[1] = (0..b).random()

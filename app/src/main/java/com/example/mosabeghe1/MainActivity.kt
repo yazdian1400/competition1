@@ -7,31 +7,26 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    var a = 0
-    var b = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        a=(0..100).random()
-        b=(0..10).random()
-        setRandomNumbers()
+       Game.dice()
+
+
     }
 
-    fun setRandomNumbers() {
+    fun setRandomNumbers(a: Int, b: Int) {
         binding.textViewValueOfA.text = a.toString()
         binding.textViewValueOfB.text = b.toString()
-
     }
-
-    fun setChoices()
-    {
-        var choice1 = (0..50).random().toString()
-        var choice2 = (0..50).random().toString()
-        var choice3 = (0..50).random().toString()
-       
-
+    fun initViews(){
+        setRandomNumbers(Game.a, Game.b)
+        binding.textViewChoice1.text = Game.generateCorrectChoice().toString()
+        binding.textViewChoice2.text = Game.generateWrongChoices()[0].toString()
+        binding.textViewChoice3.text = Game.generateWrongChoices()[1].toString()
+        binding.textViewChoice4.text = Game.generateWrongChoices()[2].toString()
     }
 
 }
