@@ -1,6 +1,7 @@
 package com.example.mosabeghe1
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.mosabeghe1.databinding.Activity2Binding
@@ -15,5 +16,14 @@ class Activity2 : AppCompatActivity() {
         setContentView(binding.root)
         val score = intent.getIntExtra("score",0)
         binding.tvShowScore.text = "your score: ${score.toString()}"
+        binding.btnExit.setOnClickListener{
+            this.finishAffinity()
+        }
+        binding.btnNewGame.setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 }
