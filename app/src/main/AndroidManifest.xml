@@ -10,18 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mosabeghe1">
         <activity
+            android:name=".ActivityManu"
+            android:exported="true" >
+        <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+        </activity>
+        <activity
             android:name=".Activity2"
             android:exported="false"
-            android:screenOrientation="fullSensor"/>
+            android:screenOrientation="fullSensor" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:screenOrientation="fullSensor"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:screenOrientation="fullSensor">
+
         </activity>
     </application>
 
