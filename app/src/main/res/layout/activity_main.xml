@@ -14,48 +14,52 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="84dp"
-        android:text="تاس"
+        android:layout_marginBottom="16dp"
+        android:text="Dice"
+        app:icon="@drawable/ic_dice_7"
+        app:iconGravity="textStart"
+        app:iconSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewChoice4"
-        style="@style/StyleTextBox1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewChoice3" />
 
     <TextView
         android:id="@+id/textViewChoice3"
         style="@style/StyleTextBox1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/textViewChoice4"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/textViewChoice4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewChoice2" />
+        app:layout_constraintTop_toTopOf="@+id/textViewChoice4" />
+
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/StyleTextBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A:"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewValueOfA"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="@+id/textViewValueOfA"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textViewValueOfA"
         style="@style/StyleTextBox1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="TextView"
+        android:layout_marginTop="16dp"
         android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewValueOfB"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewValueOfB"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -64,84 +68,91 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="TextView"
         android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewChoice2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewChoice2"
         app:layout_constraintTop_toBottomOf="@+id/textViewValueOfA" />
-
-    <TextView
-        android:id="@+id/textViewChoice1"
-        style="@style/StyleTextBox1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/textViewChoice2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewValueOfB" />
-
-    <TextView
-        android:id="@+id/textViewChoice2"
-        style="@style/StyleTextBox1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/textViewChoice3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewChoice1" />
-
-    <TextView
-        android:id="@+id/tv_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/textView6"
-        app:layout_constraintEnd_toStartOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="@+id/textView6"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/textView2"
-        style="@style/StyleTextBox1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:text="A:"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewValueOfA"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewValueOfA"
-        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView3"
         style="@style/StyleTextBox1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
         android:text="B:"
         android:textSize="28sp"
 
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/textViewValueOfB"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewChoice1"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="@+id/textViewChoice1"
         app:layout_constraintTop_toTopOf="@+id/textViewValueOfB"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@+id/textViewChoice1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewValueOfB"
+        app:layout_constraintVertical_bias="0.166" />
+
+    <TextView
+        android:id="@+id/textViewChoice1"
+        style="@style/StyleTextBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/textViewChoice2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewChoice2" />
+
+    <TextView
+        android:id="@+id/textViewChoice4"
+        style="@style/StyleTextBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewChoice3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewChoice2" />
+
+    <TextView
+        android:id="@+id/textViewChoice2"
+        style="@style/StyleTextBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewChoice1"
+        app:layout_constraintTop_toBottomOf="@+id/textViewValueOfB" />
+
+    <TextView
+        android:id="@+id/tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="36dp"
-        android:text="امتیاز :"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginEnd="8dp"
+        android:text="Score : "
+        app:layout_constraintBottom_toBottomOf="@+id/tv_score"
+        app:layout_constraintEnd_toStartOf="@+id/tv_score"
+        app:layout_constraintTop_toTopOf="@+id/tv_score"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
