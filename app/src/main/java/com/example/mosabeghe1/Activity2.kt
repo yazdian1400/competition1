@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.mosabeghe1.databinding.Activity2Binding
 import com.example.mosabeghe1.databinding.ActivityMainBinding
 
@@ -15,11 +16,14 @@ class Activity2 : AppCompatActivity() {
         binding = Activity2Binding.inflate(layoutInflater)
         setContentView(binding.root)
         val score = intent.getIntExtra("score",0)
+        Game.setMaximumScore(score)
+        Toast.makeText(this,Game.maxScore.toString(),Toast.LENGTH_LONG).show()
         binding.tvShowScore.text = " ${score.toString()}"
         binding.btnExit.setOnClickListener{
             this.finishAffinity()
         }
         binding.btnNewGame.setOnClickListener{
+            Game.reset()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
