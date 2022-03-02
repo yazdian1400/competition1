@@ -16,10 +16,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-
         binding.button.setOnClickListener{
+            binding.button.isClickable = false
+            binding.textViewChoice1.isClickable = true
+            binding.textViewChoice2.isClickable = true
+            binding.textViewChoice3.isClickable = true
+            binding.textViewChoice4.isClickable = true
             Game.dice()
             initViews()
         }
@@ -43,27 +45,35 @@ class MainActivity : AppCompatActivity() {
     }
     fun initViews(){
         setRandomNumbers(Game.a, Game.b)
-        binding.textViewChoice1.text = Game.generateCorrectChoice().toString()
-        binding.textViewChoice2.text = Game.generateWrongChoices()[0].toString()
-        binding.textViewChoice3.text = Game.generateWrongChoices()[1].toString()
-        binding.textViewChoice4.text = Game.generateWrongChoices()[2].toString()
+        val choices = Game.generateAllChoicesRandomly()
+        binding.textViewChoice1.text = choices[0].toString()
+        binding.textViewChoice2.text = choices[1].toString()
+        binding.textViewChoice3.text = choices[2].toString()
+        binding.textViewChoice4.text = choices[3].toString()
         binding.tvScore.text = Game.score.toString()
     }
-
 
     fun checkAnswer(view: View){
         if ((view as TextView).text == Game.generateCorrectChoice().toString()){
             Game.nextLevel(true)
 
-        } else {
-            Game.nextLevel(false)
-
         }
+        else {
+            Game.nextLevel(false)
+        }
+        binding.button.isClickable = true
+        binding.textViewChoice1.isClickable = false
+        binding.textViewChoice2.isClickable = false
+        binding.textViewChoice3.isClickable = false
+        binding.textViewChoice4.isClickable = false
         binding.tvScore.text = Game.score.toString()
+
         if (Game.level > 5){
             val intent = Intent(this, Activity2::class.java)
             intent.putExtra("score", Game.score)
             startActivity(intent)
         }
+
+
     }
 }
