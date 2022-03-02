@@ -5,51 +5,86 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.mosabeghe1.databinding.ActivityMainBinding
-import kotlin.properties.Delegates
-import kotlin.random.Random
+import kotlin.concurrent.timer
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    val timer = object : CountDownTimer(10000, 1000) {
+        @RequiresApi(Build.VERSION_CODES.N)
+        override fun onTick(millisUntilFinished: Long) {
+            binding.textViewTime.text = (millisUntilFinished / 1000).toString()
+
+        }
+
+        @RequiresApi(Build.VERSION_CODES.N)
+        override fun onFinish() {
+            failTime()
+        }
+    }
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         Game.maxA = intent.getIntExtra("maxA", 100)
         Game.maxB = intent.getIntExtra("maxB", 10)
         initViews()
-        binding.button.setOnClickListener{
+        binding.button.setOnClickListener {
+            timer.start()
             binding.button.isClickable = false
             binding.textViewChoice1.isClickable = true
             binding.textViewChoice2.isClickable = true
             binding.textViewChoice3.isClickable = true
             binding.textViewChoice4.isClickable = true
-            Game.dice()
-            Game.generateAllChoicesRandomly()
-            initViews()
+                Game.dice()
+                Game.generateAllChoicesRandomly()
+                initViews()
         }
-        binding.textViewChoice1.setOnClickListener{
+        binding.textViewChoice1.setOnClickListener {
             checkAnswer(it)
+            timer.cancel()
         }
-        binding.textViewChoice2.setOnClickListener{
+        binding.textViewChoice2.setOnClickListener {
             checkAnswer(it)
+            timer.cancel()
         }
-        binding.textViewChoice3.setOnClickListener{
+        binding.textViewChoice3.setOnClickListener {
             checkAnswer(it)
+            timer.cancel()
         }
-        binding.textViewChoice4.setOnClickListener{
+        binding.textViewChoice4.setOnClickListener {
             checkAnswer(it)
+            timer.cancel()
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun initViews(){
+    fun failTime()
+    { Game.nextLevel(false)
+        binding.button.isClickable = false
+        binding.textViewChoice1.isClickable = true
+        binding.textViewChoice2.isClickable = true
+        binding.textViewChoice3.isClickable = true
+        binding.textViewChoice4.isClickable = true
+        if (Game.level > 5) {
+            timer.cancel()
+            val intent = Intent(this, Activity2::class.java)
+            intent.putExtra("score", Game.score)
+            startActivity(intent)
+
+        }
+        Game.dice()
+        Game.generateAllChoicesRandomly()
+        initViews()
+        timer.start()
+
+    }
+    fun initViews() {
         binding.textViewValueOfA.text = Game.a.toString()
         binding.textViewValueOfB.text = Game.b.toString()
         if (!Game.choiceList.isEmpty()) {
@@ -62,12 +97,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun checkAnswer(view: View){
-        if ((view as TextView).text == Game.generateCorrectChoice().toString()){
+    fun checkAnswer(view: View) {
+        if ((view as TextView).text == Game.generateCorrectChoice().toString()) {
             Game.nextLevel(true)
 
-        }
-        else {
+        } else {
             Game.nextLevel(false)
         }
         binding.button.isClickable = true
@@ -77,10 +111,12 @@ class MainActivity : AppCompatActivity() {
         binding.textViewChoice4.isClickable = false
         binding.tvScore.text = Game.score.toString()
 
-        if (Game.level > 5){
+        if (Game.level > 5) {
+            timer.cancel()
             val intent = Intent(this, Activity2::class.java)
             intent.putExtra("score", Game.score)
             startActivity(intent)
         }
     }
+
 }

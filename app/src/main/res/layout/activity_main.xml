@@ -55,11 +55,12 @@
         style="@style/StyleTextBox1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewValueOfB"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewValueOfB"
+        app:layout_constraintEnd_toStartOf="@+id/textView6"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -69,9 +70,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewChoice2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewChoice2"
+        app:layout_constraintEnd_toEndOf="@+id/textViewValueOfA"
+        app:layout_constraintStart_toStartOf="@+id/textViewValueOfA"
         app:layout_constraintTop_toBottomOf="@+id/textViewValueOfA" />
 
     <TextView
@@ -129,7 +129,7 @@
         style="@style/StyleTextBox1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="176dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -143,6 +143,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -153,8 +154,20 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="Score : "
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_score"
         app:layout_constraintEnd_toStartOf="@+id/tv_score"
         app:layout_constraintTop_toTopOf="@+id/tv_score"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

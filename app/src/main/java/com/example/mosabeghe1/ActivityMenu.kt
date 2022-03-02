@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
+import com.example.mosabeghe1.databinding.ActivityMainBinding
 import com.example.mosabeghe1.databinding.ActivityMenuBinding
 
 class ActivityMenu : AppCompatActivity() {
@@ -17,7 +18,6 @@ class ActivityMenu : AppCompatActivity() {
         binding.btnStart.setOnClickListener{
             val maxA = binding.seekBarA.progress
             val maxB = binding.seekBarB.progress
-
             intent = Intent(this, MainActivity::class.java)
             intent.putExtra("maxA", maxA)
             intent.putExtra("maxB", maxB)
