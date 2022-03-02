@@ -17,7 +17,7 @@ class Activity2 : AppCompatActivity() {
         setContentView(binding.root)
         val score = intent.getIntExtra("score",0)
         Game.setMaximumScore(score)
-        Toast.makeText(this,Game.maxScore.toString(),Toast.LENGTH_LONG).show()
+        binding.textViewMaxScore.text = Game.maxScore.toString()
         binding.tvShowScore.text = " ${score.toString()}"
         binding.btnExit.setOnClickListener{
             this.finishAffinity()
