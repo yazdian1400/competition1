@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mosabeghe1">
         <activity
-            android:name=".ActivityManu"
+            android:name=".ActivityMenu"
             android:exported="true" >
         <intent-filter>
         <action android:name="android.intent.action.MAIN" />

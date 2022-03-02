@@ -2,16 +2,20 @@ package com.example.mosabeghe1
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.example.mosabeghe1.databinding.ActivityMainBinding
+import kotlin.properties.Delegates
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -42,10 +46,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setRandomNumbers(a: Int, b: Int) {
-        binding.textViewValueOfA.text = a.toString()
-        binding.textViewValueOfB.text = b.toString()
-    }
+    @RequiresApi(Build.VERSION_CODES.N)
     fun initViews(){
         binding.textViewValueOfA.text = Game.a.toString()
         binding.textViewValueOfB.text = Game.b.toString()
@@ -58,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         binding.tvScore.text = Game.score.toString()
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     fun checkAnswer(view: View){
         if ((view as TextView).text == Game.generateCorrectChoice().toString()){
             Game.nextLevel(true)
@@ -72,12 +74,12 @@ class MainActivity : AppCompatActivity() {
         binding.textViewChoice3.isClickable = false
         binding.textViewChoice4.isClickable = false
         binding.tvScore.text = Game.score.toString()
-        if (Game.level > 5){
+
+        if (Game.level > 2){
             val intent = Intent(this, Activity2::class.java)
             intent.putExtra("score", Game.score)
             startActivity(intent)
         }
-
-
+        initViews()
     }
 }
