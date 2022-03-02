@@ -12,6 +12,7 @@ class Activity2 : AppCompatActivity() {
     private lateinit var binding: Activity2Binding
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
+        this.title = "Math Game"
         super.onCreate(savedInstanceState)
         binding = Activity2Binding.inflate(layoutInflater)
         setContentView(binding.root)

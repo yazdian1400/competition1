@@ -8,6 +8,7 @@ object Game {
     var a = 0
     var b = 0
     var maxScore = -20
+    val choiceList = mutableListOf<Int>()
 
     fun dice() {
         a = (0..100).random()
@@ -35,7 +36,7 @@ object Game {
             score -= 2
         }
     }
-    fun generateAllChoicesRandomly (): MutableList<Int>{
+    fun generateAllChoicesRandomly (){
         val correctChoice = generateCorrectChoice()
         val max = max(b, 4)
         val list = (0 until max).toMutableList()
@@ -44,9 +45,9 @@ object Game {
         val choices = list.slice(0 .. 2).toMutableList()
         choices.add(correctChoice)
         choices.shuffle()
-        return choices
-
+        choiceList.addAll(choices)
     }
+
     fun reset(){
         level = 1
         score = 0
@@ -57,5 +58,7 @@ object Game {
     fun setMaximumScore(score: Int){
         if (score > maxScore) maxScore = score
     }
+
+
 
 }

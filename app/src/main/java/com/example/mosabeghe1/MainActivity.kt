@@ -16,6 +16,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        this.title = "Math Game"
+        initViews()
         binding.button.setOnClickListener{
             binding.button.isClickable = false
             binding.textViewChoice1.isClickable = true
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity() {
             binding.textViewChoice3.isClickable = true
             binding.textViewChoice4.isClickable = true
             Game.dice()
+            Game.generateAllChoicesRandomly()
             initViews()
         }
         binding.textViewChoice1.setOnClickListener{
@@ -44,12 +47,14 @@ class MainActivity : AppCompatActivity() {
         binding.textViewValueOfB.text = b.toString()
     }
     fun initViews(){
-        setRandomNumbers(Game.a, Game.b)
-        val choices = Game.generateAllChoicesRandomly()
-        binding.textViewChoice1.text = choices[0].toString()
-        binding.textViewChoice2.text = choices[1].toString()
-        binding.textViewChoice3.text = choices[2].toString()
-        binding.textViewChoice4.text = choices[3].toString()
+        binding.textViewValueOfA.text = Game.a.toString()
+        binding.textViewValueOfB.text = Game.b.toString()
+        if (!Game.choiceList.isEmpty()) {
+            binding.textViewChoice1.text = Game.choiceList[0].toString()
+            binding.textViewChoice2.text = Game.choiceList[1].toString()
+            binding.textViewChoice3.text = Game.choiceList[2].toString()
+            binding.textViewChoice4.text = Game.choiceList[3].toString()
+        }
         binding.tvScore.text = Game.score.toString()
     }
 
@@ -67,7 +72,6 @@ class MainActivity : AppCompatActivity() {
         binding.textViewChoice3.isClickable = false
         binding.textViewChoice4.isClickable = false
         binding.tvScore.text = Game.score.toString()
-
         if (Game.level > 5){
             val intent = Intent(this, Activity2::class.java)
             intent.putExtra("score", Game.score)
