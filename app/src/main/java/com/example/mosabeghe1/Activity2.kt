@@ -25,7 +25,7 @@ class Activity2 : AppCompatActivity() {
         }
         binding.btnNewGame.setOnClickListener{
             Game.reset()
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, ActivityMenu::class.java)
             startActivity(intent)
         }
 

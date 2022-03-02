@@ -20,7 +20,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        this.title = "Math Game"
+
+        Game.maxA = intent.getIntExtra("maxA", 100)
+        Game.maxB = intent.getIntExtra("maxB", 10)
         initViews()
         binding.button.setOnClickListener{
             binding.button.isClickable = false
@@ -75,11 +77,10 @@ class MainActivity : AppCompatActivity() {
         binding.textViewChoice4.isClickable = false
         binding.tvScore.text = Game.score.toString()
 
-        if (Game.level > 2){
+        if (Game.level > 5){
             val intent = Intent(this, Activity2::class.java)
             intent.putExtra("score", Game.score)
             startActivity(intent)
         }
-        initViews()
     }
 }

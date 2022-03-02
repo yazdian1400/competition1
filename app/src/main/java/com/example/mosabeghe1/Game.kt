@@ -6,27 +6,21 @@ object Game {
     var level = 1
     var score = 0
     var a = 0
+    var maxA = 100
     var b = 0
+    var maxB = 10
     var maxScore = -20
     val choiceList = mutableListOf<Int>()
 
     fun dice() {
-        a = (0..100).random()
-        b = (1..10).random()
+        a = (0..maxA).random()
+        b = (1..maxB).random()
     }
 
     fun generateCorrectChoice(): Int {
         return a % b
     }
 
-    fun generateWrongChoices(): MutableList<Int> {
-        val choices = mutableListOf(0, 0, 0)
-        choices[0] = (0..20).random()
-        choices[1] = (0..20).random()
-        choices[2] = (0..20).random()
-        return choices
-        TODO("handle inequality")
-    }
 
     fun nextLevel(isCorrect: Boolean){
         level++
@@ -53,12 +47,11 @@ object Game {
         score = 0
         a = 0
         b = 0
+        maxA = 100
+        maxB = 10
     }
 
     fun setMaximumScore(score: Int){
         if (score > maxScore) maxScore = score
     }
-
-
-
 }
