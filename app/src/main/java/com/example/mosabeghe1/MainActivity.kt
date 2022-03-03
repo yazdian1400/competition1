@@ -31,8 +31,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //Game.maxA = intent.getIntExtra("maxA", 100)
-        //Game.maxB = intent.getIntExtra("maxB", 10)
         initViews()
         binding.button.setOnClickListener {
             timer.start()
@@ -62,22 +60,17 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.N)
     fun failTime() {
         Game.nextLevel(false)
-        binding.button.isClickable = false
-        binding.textViewChoice1.isClickable = true
-        binding.textViewChoice2.isClickable = true
-        binding.textViewChoice3.isClickable = true
-        binding.textViewChoice4.isClickable = true
         if (Game.level > 5) {
             timer.cancel()
             val intent = Intent(this, Activity2::class.java)
             intent.putExtra("score", Game.score)
             startActivity(intent)
-
+        } else {
+            Game.dice()
+            Game.generateAllChoicesRandomly()
+            initViews()
+            timer.start()
         }
-        Game.dice()
-        Game.generateAllChoicesRandomly()
-        initViews()
-        timer.start()
 
     }
     fun initViews() {
