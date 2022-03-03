@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         @RequiresApi(Build.VERSION_CODES.N)
         override fun onTick(millisUntilFinished: Long) {
             binding.textViewTime.text = (millisUntilFinished / 1000).toString()
-
         }
 
         @RequiresApi(Build.VERSION_CODES.N)

@@ -1,5 +1,6 @@
 package com.example.mosabeghe1
 
+import android.graphics.Region
 import java.lang.Math.max
 
 object Game {
@@ -11,6 +12,7 @@ object Game {
     var maxB = 10
     var maxScore = -20
     val choiceList = mutableListOf<Int>()
+    var operator = Operator.REMINDER
 
     fun dice() {
         a = (0..maxA).random()
@@ -18,9 +20,12 @@ object Game {
     }
 
     fun generateCorrectChoice(): Int {
-        return a % b
-    }
+        return when (operator){
+            Operator.REMINDER ->    a % b
+            else -> a + b
+        }
 
+    }
 
     fun nextLevel(isCorrect: Boolean){
         level++
@@ -30,17 +35,31 @@ object Game {
             score -= 2
         }
     }
+
     fun generateAllChoicesRandomly (){
         val correctChoice = generateCorrectChoice()
-        val max = max(b, 4)
-        val list = (0 until max).toMutableList()
-        list.remove(correctChoice)
-        list.shuffle()
-        val choices = list.slice(0 .. 2).toMutableList()
-        choices.add(correctChoice)
-        choices.shuffle()
         choiceList.clear()
-        choiceList.addAll(choices)
+        val choices: MutableList<Int>
+
+        if (operator == Operator.REMINDER) {
+            val max = max(b, 4)
+            val list = (0 until max).toMutableList()
+            list.remove(correctChoice)
+            list.shuffle()
+            choices = list.slice(0..2).toMutableList()
+            choices.add(correctChoice)
+            choices.shuffle()
+            choiceList.addAll(choices)
+        } else if (operator == Operator.ADDITION){
+            val minRange = max(correctChoice - 10, 1)
+            val list = (minRange until (correctChoice + 10)).toMutableList()
+            list.remove(correctChoice)
+            list.shuffle()
+            choices = list.slice(0..2).toMutableList()
+            choices.add(correctChoice)
+            choices.shuffle()
+            choiceList.addAll(choices)
+        }
     }
 
     fun reset(){
