@@ -120,6 +120,7 @@
         app:layout_constraintTop_toBottomOf="@+id/seekBar_B" />
 
     <RadioGroup
+        android:id="@+id/rg_operators"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -137,6 +138,7 @@
             style="@style/StyleRadioButton1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:text="%" />
 
         <RadioButton

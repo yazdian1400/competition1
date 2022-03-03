@@ -73,6 +73,10 @@ class MainActivity : AppCompatActivity() {
 
     }
     fun initViews() {
+        binding.tvOperator.text = when (Game.operator){
+            Operator.REMINDER -> "%"
+            else -> "+"
+        }
         binding.textViewValueOfA.text = Game.a.toString()
         binding.textViewValueOfB.text = Game.b.toString()
         if (!Game.choiceList.isEmpty()) {
