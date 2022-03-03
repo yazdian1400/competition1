@@ -11,7 +11,8 @@
         android:theme="@style/Theme.Mosabeghe1">
         <activity
             android:name=".ActivityMenu"
-            android:exported="true" >
+            android:exported="true"
+            android:screenOrientation="fullSensor">
         <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

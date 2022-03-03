@@ -39,6 +39,7 @@ object Game {
         val choices = list.slice(0 .. 2).toMutableList()
         choices.add(correctChoice)
         choices.shuffle()
+        choiceList.clear()
         choiceList.addAll(choices)
     }
 
@@ -47,8 +48,7 @@ object Game {
         score = 0
         a = 0
         b = 0
-        maxA = 100
-        maxB = 10
+        choiceList.clear()
     }
 
     fun setMaximumScore(score: Int){

@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Game.maxA = intent.getIntExtra("maxA", 100)
-        Game.maxB = intent.getIntExtra("maxB", 10)
+        //Game.maxA = intent.getIntExtra("maxA", 100)
+        //Game.maxB = intent.getIntExtra("maxB", 10)
         initViews()
         binding.button.setOnClickListener {
             timer.start()
@@ -47,25 +47,21 @@ class MainActivity : AppCompatActivity() {
         }
         binding.textViewChoice1.setOnClickListener {
             checkAnswer(it)
-            timer.cancel()
         }
         binding.textViewChoice2.setOnClickListener {
             checkAnswer(it)
-            timer.cancel()
         }
         binding.textViewChoice3.setOnClickListener {
             checkAnswer(it)
-            timer.cancel()
         }
         binding.textViewChoice4.setOnClickListener {
             checkAnswer(it)
-            timer.cancel()
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun failTime()
-    { Game.nextLevel(false)
+    fun failTime() {
+        Game.nextLevel(false)
         binding.button.isClickable = false
         binding.textViewChoice1.isClickable = true
         binding.textViewChoice2.isClickable = true
@@ -98,6 +94,7 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun checkAnswer(view: View) {
+        timer.cancel()
         if ((view as TextView).text == Game.generateCorrectChoice().toString()) {
             Game.nextLevel(true)
 

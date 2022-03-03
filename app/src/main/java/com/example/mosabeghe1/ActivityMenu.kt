@@ -15,12 +15,13 @@ class ActivityMenu : AppCompatActivity() {
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
         this.title = "Menu"
+        initViews()
         binding.btnStart.setOnClickListener{
-            val maxA = binding.seekBarA.progress
-            val maxB = binding.seekBarB.progress
+            Game.maxA = binding.seekBarA.progress
+            Game.maxB = binding.seekBarB.progress
             intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("maxA", maxA)
-            intent.putExtra("maxB", maxB)
+//            intent.putExtra("maxA", maxA)
+//            intent.putExtra("maxB", maxB)
             startActivity(intent)
         }
 
@@ -55,5 +56,11 @@ class ActivityMenu : AppCompatActivity() {
             override fun onStopTrackingTouch(p0: SeekBar?) {
             }
         })
+    }
+
+    private fun initViews() {
+        binding.seekBarA.progress = Game.maxA
+        binding.seekBarB.progress = Game.maxB
+        binding.tvMaxA.text = binding.seekBarA.progress.toString()
     }
 }
