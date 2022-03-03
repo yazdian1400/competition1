@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         @RequiresApi(Build.VERSION_CODES.N)
         override fun onTick(millisUntilFinished: Long) {
             binding.textViewTime.text = (millisUntilFinished / 1000).toString()
+            if ((millisUntilFinished / 1000) > 3) binding.textViewTime.setTextColor(getColor(R.color.yellow))
+            else  binding.textViewTime.setTextColor(getColor(R.color.my_red))
         }
 
         @RequiresApi(Build.VERSION_CODES.N)
