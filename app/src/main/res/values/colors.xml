@@ -11,4 +11,5 @@
     <color name="my_green">#00FF00</color>
     <color name="my_red">#FF0000</color>
     <color name="my_gray">#404040</color>
+    <color name="background">#E0F7FA</color>
 </resources>

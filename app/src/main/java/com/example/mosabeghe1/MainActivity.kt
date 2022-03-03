@@ -72,11 +72,16 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+    @RequiresApi(Build.VERSION_CODES.M)
     fun initViews() {
         binding.tvOperator.text = when (Game.operator){
             Operator.REMINDER -> "%"
             else -> "+"
         }
+        binding.textViewChoice1.setBackgroundColor(getColor(R.color.background))
+        binding.textViewChoice2.setBackgroundColor(getColor(R.color.background))
+        binding.textViewChoice3.setBackgroundColor(getColor(R.color.background))
+        binding.textViewChoice4.setBackgroundColor(getColor(R.color.background))
         binding.textViewValueOfA.text = Game.a.toString()
         binding.textViewValueOfB.text = Game.b.toString()
         if (!Game.choiceList.isEmpty()) {
@@ -92,9 +97,11 @@ class MainActivity : AppCompatActivity() {
     fun checkAnswer(view: View) {
         timer.cancel()
         if ((view as TextView).text == Game.generateCorrectChoice().toString()) {
+            view.setBackgroundColor(getColor(R.color.my_green))
             Game.nextLevel(true)
 
         } else {
+            view.setBackgroundColor(getColor(R.color.my_red))
             Game.nextLevel(false)
         }
         binding.button.isClickable = true
