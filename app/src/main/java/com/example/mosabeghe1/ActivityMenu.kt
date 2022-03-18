@@ -14,59 +14,5 @@ class ActivityMenu : AppCompatActivity() {
         setContentView(R.layout.activity_menu)
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        this.title = "Menu"
-        initViews()
-        binding.btnStart.setOnClickListener{
-            Game.maxA = binding.seekBarA.progress
-            Game.maxB = binding.seekBarB.progress
-            Game.operator = when (binding.rgOperators.checkedRadioButtonId){
-                binding.rbReminder.id ->   Operator.REMINDER
-                else -> Operator.ADDITION       //binding.rbAddition.id
-            }
-            intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.seekBarA.setOnSeekBarChangeListener(object:
-            SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(
-                seek: SeekBar,
-                progress: Int, fromUser: Boolean
-            ) {
-                binding.tvMaxA.text = binding.seekBarA.progress.toString()
-            }
-
-            override fun onStartTrackingTouch(p0: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(p0: SeekBar?) {
-            }
-        })
-
-        binding.seekBarB.setOnSeekBarChangeListener(object:
-            SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(
-                seek: SeekBar,
-                progress: Int, fromUser: Boolean
-            ) {
-                binding.tvMaxB.text = binding.seekBarB.progress.toString()
-            }
-
-            override fun onStartTrackingTouch(p0: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(p0: SeekBar?) {
-            }
-        })
-    }
-
-    private fun initViews() {
-        binding.seekBarA.progress = Game.maxA
-        binding.seekBarB.progress = Game.maxB
-        binding.tvMaxA.text = binding.seekBarA.progress.toString()
-        when (Game.operator) {
-            Operator.REMINDER-> binding.rbReminder.isChecked = true
-            else -> binding.rbAddition.isChecked = true
-        }
     }
 }
