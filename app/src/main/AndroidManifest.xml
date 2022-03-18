@@ -10,14 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mosabeghe1">
         <activity
-            android:name=".ActivityMenu"
-            android:exported="true"
-            android:screenOrientation="fullSensor"/>
-        <activity
-            android:name=".Activity2"
-            android:exported="false"
-            android:screenOrientation="fullSensor" />
-        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="fullSensor">
