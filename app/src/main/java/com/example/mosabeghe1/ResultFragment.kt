@@ -1,6 +1,7 @@
 package com.example.mosabeghe1
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,7 +13,7 @@ import com.example.mosabeghe1.databinding.FragmentResultBinding
 
 
 class ResultFragment : Fragment() {
-    lateinit var binding: FragmentResultBinding
+    private lateinit var binding: FragmentResultBinding
     private val mainViewModel: MainViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,11 +22,12 @@ class ResultFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentResultBinding.inflate(layoutInflater, container, false)
         return  binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -35,7 +37,7 @@ class ResultFragment : Fragment() {
         }
         mainViewModel.setMaximumScore(score)
         binding.textViewMaxScore.text = mainViewModel.maxScore.toString()
-        binding.tvShowScore.text = " ${score.toString()}"
+        binding.tvShowScore.text = " $score"
         binding.btnExit.setOnClickListener{
             requireActivity().finishAffinity()
         }
