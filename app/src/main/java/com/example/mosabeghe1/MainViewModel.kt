@@ -1,9 +1,8 @@
 package com.example.mosabeghe1
 
-import android.graphics.Region
-import java.lang.Math.max
+import androidx.lifecycle.ViewModel
 
-object Game {
+class MainViewModel :ViewModel() {
     var level = 1
     var score = 0
     var a = 0
@@ -42,7 +41,7 @@ object Game {
         val choices: MutableList<Int>
 
         if (operator == Operator.REMINDER) {
-            val max = max(b, 4)
+            val max = Math.max(b, 4)
             val list = (0 until max).toMutableList()
             list.remove(correctChoice)
             list.shuffle()
@@ -51,7 +50,7 @@ object Game {
             choices.shuffle()
             choiceList.addAll(choices)
         } else if (operator == Operator.ADDITION){
-            val minRange = max(correctChoice - 10, 1)
+            val minRange = Math.max(correctChoice - 10, 1)
             val list = (minRange until (correctChoice + 10)).toMutableList()
             list.remove(correctChoice)
             list.shuffle()

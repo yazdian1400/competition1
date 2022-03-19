@@ -1,6 +1,5 @@
 package com.example.mosabeghe1
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -11,13 +10,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat.getColor
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mosabeghe1.databinding.FragmentGameBinding
-import com.example.mosabeghe1.databinding.FragmentResultBinding
 
 class GameFragment : Fragment() {
+    private val mainViewModel: MainViewModel by activityViewModels()
     lateinit var binding: FragmentGameBinding
-    val timer = object : CountDownTimer(10000, 1000) {
+    private val timer = object : CountDownTimer(10000, 1000) {
         @RequiresApi(Build.VERSION_CODES.N)
         override fun onTick(millisUntilFinished: Long) {
             binding.textViewTime.text = (millisUntilFinished / 1000).toString()
@@ -38,7 +38,7 @@ class GameFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentGameBinding.inflate(layoutInflater, container, false)
         return  binding.root
     }
@@ -55,8 +55,8 @@ class GameFragment : Fragment() {
             binding.textViewChoice2.isClickable = true
             binding.textViewChoice3.isClickable = true
             binding.textViewChoice4.isClickable = true
-            Game.dice()
-            Game.generateAllChoicesRandomly()
+            mainViewModel.dice()
+            mainViewModel.generateAllChoicesRandomly()
             initViews()
         }
         binding.textViewChoice1.setOnClickListener {
@@ -75,12 +75,12 @@ class GameFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.M)
     fun failTime() {
-        Game.nextLevel(false)
-        if (Game.level > 5) {
+        mainViewModel.nextLevel(false)
+        if (mainViewModel.level > 5) {
             finishGame()
         } else {
-            Game.dice()
-            Game.generateAllChoicesRandomly()
+            mainViewModel.dice()
+            mainViewModel.generateAllChoicesRandomly()
             initViews()
             timer.start()
         }
@@ -88,7 +88,7 @@ class GameFragment : Fragment() {
     }
     @RequiresApi(Build.VERSION_CODES.M)
     fun initViews() {
-        binding.tvOperator.text = when (Game.operator){
+        binding.tvOperator.text = when (mainViewModel.operator){
             Operator.REMINDER -> "%"
             else -> "+"
         }
@@ -96,44 +96,44 @@ class GameFragment : Fragment() {
         binding.textViewChoice2.setBackgroundColor(getColor(requireContext(),R.color.background))
         binding.textViewChoice3.setBackgroundColor(getColor(requireContext(),R.color.background))
         binding.textViewChoice4.setBackgroundColor(getColor(requireContext(),R.color.background))
-        binding.textViewValueOfA.text = Game.a.toString()
-        binding.textViewValueOfB.text = Game.b.toString()
-        if (Game.choiceList.isNotEmpty()) {
-            binding.textViewChoice1.text = Game.choiceList[0].toString()
-            binding.textViewChoice2.text = Game.choiceList[1].toString()
-            binding.textViewChoice3.text = Game.choiceList[2].toString()
-            binding.textViewChoice4.text = Game.choiceList[3].toString()
+        binding.textViewValueOfA.text = mainViewModel.a.toString()
+        binding.textViewValueOfB.text = mainViewModel.b.toString()
+        if (mainViewModel.choiceList.isNotEmpty()) {
+            binding.textViewChoice1.text = mainViewModel.choiceList[0].toString()
+            binding.textViewChoice2.text = mainViewModel.choiceList[1].toString()
+            binding.textViewChoice3.text = mainViewModel.choiceList[2].toString()
+            binding.textViewChoice4.text = mainViewModel.choiceList[3].toString()
         }
-        binding.tvScore.text = Game.score.toString()
+        binding.tvScore.text = mainViewModel.score.toString()
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun checkAnswer(view: View) {
         timer.cancel()
-        if ((view as TextView).text == Game.generateCorrectChoice().toString()) {
+        if ((view as TextView).text == mainViewModel.generateCorrectChoice().toString()) {
             view.setBackgroundColor(getColor(requireContext(),R.color.my_green))
-            Game.nextLevel(true)
+            mainViewModel.nextLevel(true)
 
         } else {
             view.setBackgroundColor(getColor(requireContext(),R.color.my_red))
-            Game.nextLevel(false)
+            mainViewModel.nextLevel(false)
         }
         binding.button.isClickable = true
         binding.textViewChoice1.isClickable = false
         binding.textViewChoice2.isClickable = false
         binding.textViewChoice3.isClickable = false
         binding.textViewChoice4.isClickable = false
-        binding.tvScore.text = Game.score.toString()
+        binding.tvScore.text = mainViewModel.score.toString()
 
-        if (Game.level > 5) {
+        if (mainViewModel.level > 5) {
             finishGame()
         }
     }
 
-    fun finishGame() {
+    private fun finishGame() {
         timer.cancel()
         val bundle = Bundle()
-        bundle.putInt("score", Game.score)
+        bundle.putInt("score", mainViewModel.score)
         findNavController().navigate(R.id.action_gameFragment_to_resultFragment,bundle)
     }
 }
