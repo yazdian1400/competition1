@@ -1,6 +1,5 @@
 package com.example.mosabeghe1
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -14,12 +13,11 @@ import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mosabeghe1.databinding.FragmentGameBinding
-import com.example.mosabeghe1.databinding.FragmentResultBinding
 
 class GameFragment : Fragment() {
-    val mainViewModel: MainViewModel by activityViewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
     lateinit var binding: FragmentGameBinding
-    val timer = object : CountDownTimer(10000, 1000) {
+    private val timer = object : CountDownTimer(10000, 1000) {
         @RequiresApi(Build.VERSION_CODES.N)
         override fun onTick(millisUntilFinished: Long) {
             binding.textViewTime.text = (millisUntilFinished / 1000).toString()
@@ -40,7 +38,7 @@ class GameFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentGameBinding.inflate(layoutInflater, container, false)
         return  binding.root
     }
@@ -132,7 +130,7 @@ class GameFragment : Fragment() {
         }
     }
 
-    fun finishGame() {
+    private fun finishGame() {
         timer.cancel()
         val bundle = Bundle()
         bundle.putInt("score", mainViewModel.score)
