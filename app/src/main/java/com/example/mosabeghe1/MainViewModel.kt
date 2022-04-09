@@ -12,6 +12,8 @@ class MainViewModel :ViewModel() {
     var maxScore = -20
     val choiceList = mutableListOf<Int>()
     var operator = Operator.REMINDER
+    var userChoice = 0
+    var isAnswered = false
 
     fun dice() {
         a = (0..maxA).random()
@@ -67,6 +69,7 @@ class MainViewModel :ViewModel() {
         a = 0
         b = 0
         choiceList.clear()
+        isAnswered = false
     }
 
     fun setMaximumScore(score: Int){

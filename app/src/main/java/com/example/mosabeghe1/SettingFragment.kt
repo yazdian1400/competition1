@@ -84,6 +84,7 @@ class SettingFragment : Fragment() {
     }
 
     fun startGame() {
+        mainViewModel.reset()
         findNavController().navigate(R.id.action_settingFragment_to_gameFragment)
     }
 }

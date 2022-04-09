@@ -49,6 +49,7 @@ class GameFragment : Fragment() {
 
         initViews()
         binding.button.setOnClickListener {
+            mainViewModel.isAnswered = false
             timer.start()
             binding.button.isClickable = false
             binding.textViewChoice1.isClickable = true
@@ -105,10 +106,25 @@ class GameFragment : Fragment() {
             binding.textViewChoice4.text = mainViewModel.choiceList[3].toString()
         }
         binding.tvScore.text = mainViewModel.score.toString()
+
+        if (mainViewModel.isAnswered) {
+            var view: TextView = when (mainViewModel.userChoice) {
+                1 -> binding.textViewChoice1
+                2 -> binding.textViewChoice2
+                3 -> binding.textViewChoice3
+                else -> binding.textViewChoice4
+            }
+            if (view.text == mainViewModel.generateCorrectChoice().toString()) {
+                view.setBackgroundColor(getColor(requireContext(), R.color.my_green))
+            } else {
+                view.setBackgroundColor(getColor(requireContext(), R.color.my_red))
+            }
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun checkAnswer(view: View) {
+        mainViewModel.isAnswered = true
         timer.cancel()
         if ((view as TextView).text == mainViewModel.generateCorrectChoice().toString()) {
             view.setBackgroundColor(getColor(requireContext(),R.color.my_green))
@@ -124,6 +140,14 @@ class GameFragment : Fragment() {
         binding.textViewChoice3.isClickable = false
         binding.textViewChoice4.isClickable = false
         binding.tvScore.text = mainViewModel.score.toString()
+
+        mainViewModel.userChoice = when(view) {
+             binding.textViewChoice1 -> 1
+             binding.textViewChoice2 -> 2
+             binding.textViewChoice3 -> 3
+             binding.textViewChoice4 -> 4
+            else -> 0
+        }
 
         if (mainViewModel.level > 5) {
             finishGame()

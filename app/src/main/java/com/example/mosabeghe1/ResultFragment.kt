@@ -42,7 +42,7 @@ class ResultFragment : Fragment() {
             requireActivity().finishAffinity()
         }
         binding.btnNewGame.setOnClickListener{
-            mainViewModel.reset()
+            //mainViewModel.reset()     moved to SettingFragment
             resetGame()
         }
     }
