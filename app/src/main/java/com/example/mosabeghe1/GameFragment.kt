@@ -1,5 +1,6 @@
 package com.example.mosabeghe1
 
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -21,8 +22,8 @@ class GameFragment : Fragment() {
         @RequiresApi(Build.VERSION_CODES.N)
         override fun onTick(millisUntilFinished: Long) {
             binding.textViewTime.text = (millisUntilFinished / 1000).toString()
-            if ((millisUntilFinished / 1000) > 3) binding.textViewTime.setTextColor(getColor(requireContext(),R.color.yellow))
-            else  binding.textViewTime.setTextColor(getColor(requireContext(),R.color.my_red))
+            if ((millisUntilFinished / 1000) > 3) binding.textViewTime.setTextColor(Color.YELLOW)
+            else  binding.textViewTime.setTextColor(Color.RED)
         }
 
         @RequiresApi(Build.VERSION_CODES.N)
@@ -93,10 +94,10 @@ class GameFragment : Fragment() {
             Operator.REMINDER -> "%"
             else -> "+"
         }
-        binding.textViewChoice1.setBackgroundColor(getColor(requireContext(),R.color.background))
-        binding.textViewChoice2.setBackgroundColor(getColor(requireContext(),R.color.background))
-        binding.textViewChoice3.setBackgroundColor(getColor(requireContext(),R.color.background))
-        binding.textViewChoice4.setBackgroundColor(getColor(requireContext(),R.color.background))
+        binding.textViewChoice1.setBackgroundColor(Color.TRANSPARENT)
+        binding.textViewChoice2.setBackgroundColor(Color.TRANSPARENT)
+        binding.textViewChoice3.setBackgroundColor(Color.TRANSPARENT)
+        binding.textViewChoice4.setBackgroundColor(Color.TRANSPARENT)
         binding.textViewValueOfA.text = mainViewModel.a.toString()
         binding.textViewValueOfB.text = mainViewModel.b.toString()
         if (mainViewModel.choiceList.isNotEmpty()) {
@@ -115,9 +116,9 @@ class GameFragment : Fragment() {
                 else -> binding.textViewChoice4
             }
             if (view.text == mainViewModel.generateCorrectChoice().toString()) {
-                view.setBackgroundColor(getColor(requireContext(), R.color.my_green))
+                view.setBackgroundColor(Color.GREEN)
             } else {
-                view.setBackgroundColor(getColor(requireContext(), R.color.my_red))
+                view.setBackgroundColor(Color.RED)
             }
         }
     }
@@ -127,11 +128,11 @@ class GameFragment : Fragment() {
         mainViewModel.isAnswered = true
         timer.cancel()
         if ((view as TextView).text == mainViewModel.generateCorrectChoice().toString()) {
-            view.setBackgroundColor(getColor(requireContext(),R.color.my_green))
+            view.setBackgroundColor(Color.GREEN)
             mainViewModel.nextLevel(true)
 
         } else {
-            view.setBackgroundColor(getColor(requireContext(),R.color.my_red))
+            view.setBackgroundColor(Color.RED)
             mainViewModel.nextLevel(false)
         }
         binding.button.isClickable = true
